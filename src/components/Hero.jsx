@@ -29,7 +29,7 @@ const Hero = () => {
                         {/* Image Container */}
                         <div className="relative w-64 h-64 md:w-80 md:h-80 rounded-full overflow-hidden border-2 border-white/20 bg-gray-900 shadow-[0_0_50px_rgba(37,99,235,0.2)]">
                             <img
-                                src="/src/assets/images/profile.jpg"
+                                src="/profile.jpg"
                                 alt="Muhammad Abdul Aleem"
                                 className="w-full h-full object-cover transform transition-transform duration-700 hover:scale-110"
                             />

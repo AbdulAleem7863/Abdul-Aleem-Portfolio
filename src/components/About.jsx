@@ -26,8 +26,8 @@ const About = () => {
 
                             <div className="relative aspect-square rounded-2xl overflow-hidden border border-white/10 bg-gray-900/50 backdrop-blur-sm transition-transform duration-500 group-hover:rotate-y-6 group-hover:scale-105 shadow-2xl">
                                 <img
-                                    src="/src/assets/images/profile.jpg"
-                                    alt="Professional portrait of Muhammad Abdul Aleem, Full Stack Developer"
+                                    src="/profile.jpg"
+                                    alt="Muhammad Abdul Aleem"
                                     loading="lazy"
                                     className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700"
                                 />
