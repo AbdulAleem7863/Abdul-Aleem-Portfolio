@@ -100,7 +100,7 @@ const Contact = () => {
                                     <label className="text-xs font-black text-gray-500 uppercase tracking-widest ml-1">Your Name</label>
                                     <input
                                         type="text"
-                                        name="from_name"
+                                        name="name"
                                         required
                                         placeholder="John Doe"
                                         className="w-full h-14 px-6 rounded-2xl bg-black/40 border border-white/10 focus:border-blue-500 focus:ring-4 focus:ring-blue-500/10 outline-none transition-all placeholder:text-gray-700 text-white font-medium"
@@ -110,7 +110,7 @@ const Contact = () => {
                                     <label className="text-xs font-black text-gray-500 uppercase tracking-widest ml-1">Email Address</label>
                                     <input
                                         type="email"
-                                        name="from_email"
+                                        name="email"
                                         required
                                         placeholder="aleem@example.com"
                                         className="w-full h-14 px-6 rounded-2xl bg-black/40 border border-white/10 focus:border-blue-500 focus:ring-4 focus:ring-blue-500/10 outline-none transition-all placeholder:text-gray-700 text-white font-medium"
