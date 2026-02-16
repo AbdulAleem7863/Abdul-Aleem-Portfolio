@@ -85,17 +85,17 @@ const Contact = () => {
                         <div className="space-y-6">
                             <div>
                                 <label className="block text-sm font-bold text-gray-400 mb-2 uppercase tracking-wide">Name</label>
-                                <input type="text" name="name" required className="w-full px-4 py-3 bg-[#0a0a0a] border border-white/10 text-white rounded-xl focus:outline-none focus:border-purple-500 focus:shadow-[0_0_15px_rgba(168,85,247,0.3)] transition-all placeholder-gray-600" placeholder="John Doe" />
+                                <input type="text" name="name" required className="w-full px-4 py-3 bg-[#0a0a0a] border border-white/10 text-white rounded-xl focus:outline-none focus:border-purple-500 focus:shadow-[0_0_15px_rgba(168,85,247,0.3)] transition-all placeholder-gray-600" placeholder="Your Name" />
                             </div>
 
                             <div>
                                 <label className="block text-sm font-bold text-gray-400 mb-2 uppercase tracking-wide">Email</label>
-                                <input type="email" name="email" required className="w-full px-4 py-3 bg-[#0a0a0a] border border-white/10 text-white rounded-xl focus:outline-none focus:border-purple-500 focus:shadow-[0_0_15px_rgba(168,85,247,0.3)] transition-all placeholder-gray-600" placeholder="john@example.com" />
+                                <input type="email" name="email" required className="w-full px-4 py-3 bg-[#0a0a0a] border border-white/10 text-white rounded-xl focus:outline-none focus:border-purple-500 focus:shadow-[0_0_15px_rgba(168,85,247,0.3)] transition-all placeholder-gray-600" placeholder="Your Email" />
                             </div>
 
                             <div>
                                 <label className="block text-sm font-bold text-gray-400 mb-2 uppercase tracking-wide">Message</label>
-                                <textarea name="message" required rows="4" className="w-full px-4 py-3 bg-[#0a0a0a] border border-white/10 text-white rounded-xl focus:outline-none focus:border-purple-500 focus:shadow-[0_0_15px_rgba(168,85,247,0.3)] transition-all resize-none placeholder-gray-600" placeholder="Tell me about your project..."></textarea>
+                                <textarea name="message" required rows="4" className="w-full px-4 py-3 bg-[#0a0a0a] border border-white/10 text-white rounded-xl focus:outline-none focus:border-purple-500 focus:shadow-[0_0_15px_rgba(168,85,247,0.3)] transition-all resize-none placeholder-gray-600" placeholder="Your Message"></textarea>
                             </div>
 
                             <button
