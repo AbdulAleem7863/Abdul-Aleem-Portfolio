@@ -36,7 +36,7 @@ const About = () => {
 
                             {/* Floating experience card with 3D shadow */}
                             <div className="absolute -bottom-6 -right-6 bg-white/5 backdrop-blur-xl border border-white/10 p-6 rounded-xl shadow-[20px_20px_50px_rgba(0,0,0,0.5)] hidden md:block transform transition-transform group-hover:-translate-y-2">
-                                <div className="text-3xl font-bold bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">2+</div>
+                                <div className="text-3xl font-bold bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">2.5+</div>
                                 <div className="text-sm text-gray-400 font-medium">Years of Experience</div>
                             </div>
                         </div>
