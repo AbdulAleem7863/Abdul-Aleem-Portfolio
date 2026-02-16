@@ -1,75 +1,60 @@
-import { useEffect, useRef } from "react";
-import { animateHeroContent, animateTextReveal } from "../animations/gsapAnimations";
-import HeroBackground from "./HeroBackground";
+import { useRef, useEffect } from "react";
+import { animateStaggeredFadeUp } from "../animations/gsapAnimations";
 
 const Hero = () => {
-    const heroRef = useRef(null);
+    const sectionRef = useRef(null);
 
     useEffect(() => {
-        animateHeroContent(heroRef);
-        animateTextReveal(heroRef);
+        animateStaggeredFadeUp(sectionRef);
     }, []);
 
     return (
-        <section id="home" ref={heroRef} className="relative min-h-screen flex items-center justify-center bg-[#050505] text-white px-6 py-20 lg:py-0 overflow-hidden">
-            <HeroBackground />
+        <section ref={sectionRef} id="home" className="min-h-screen relative flex items-center justify-center pt-32 pb-24 px-6 overflow-hidden bg-[#030014]">
 
-            {/* Animated Ambient Light */}
-            <div className="absolute top-1/4 left-1/4 w-[500px] h-[500px] bg-blue-600/10 rounded-full blur-[120px] pointer-events-none animate-pulse"></div>
-            <div className="absolute bottom-1/4 right-1/4 w-[400px] h-[400px] bg-purple-600/10 rounded-full blur-[100px] pointer-events-none animate-bounce" style={{ animationDuration: '8s' }}></div>
+            {/* Background Effects */}
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-purple-600/20 rounded-full blur-[100px] animate-pulse pointer-events-none"></div>
+            <div className="absolute bottom-0 right-0 w-[400px] h-[400px] bg-indigo-600/10 rounded-full blur-[120px] pointer-events-none"></div>
 
-            <div className="container mx-auto flex flex-col md:flex-row items-center justify-between gap-12 relative z-10 perspective-1000">
+            <div className="container mx-auto max-w-7xl relative z-10 flex flex-col md:flex-row items-center gap-16 lg:gap-32">
 
-                {/* Left Side: Profile Image */}
-                <div className="w-full md:w-1/2 flex justify-center order-1 hero-image-wrap transition-transform duration-500 hover:scale-105">
-                    <div className="relative group">
-                        {/* 3D Radiant Glow */}
-                        <div className="absolute -inset-4 bg-gradient-to-r from-blue-600 via-indigo-500 to-purple-600 rounded-full blur-2xl opacity-20 group-hover:opacity-60 transition duration-1000 group-hover:duration-200 animate-spin-slow"></div>
+                {/* Left Content */}
+                <div className="flex-1 text-center md:text-left">
+                    <span className="inline-block px-4 py-1.5 rounded-full bg-purple-900/30 border border-purple-500/30 text-purple-300 font-bold text-xs uppercase tracking-widest mb-6 shadow-[0_0_10px_rgba(168,85,247,0.2)]">
+                        Available for Freelance
+                    </span>
 
-                        {/* Image Container */}
-                        <div className="relative w-64 h-64 md:w-80 md:h-80 rounded-full overflow-hidden border-2 border-white/20 bg-gray-900 shadow-[0_0_50px_rgba(37,99,235,0.2)]">
-                            <img
-                                src="/profile.jpg"
-                                alt="Muhammad Abdul Aleem"
-                                className="w-full h-full object-cover transform transition-transform duration-700 hover:scale-110"
-                            />
-                        </div>
-                    </div>
-                </div>
-
-                {/* Right Side: Text Content */}
-                <div className="w-full md:w-1/2 text-center md:text-left order-2">
-                    <h2 className="text-blue-500 font-mono text-sm md:text-lg  tracking-wider hero-greeting">Hello, I'm</h2>
-                    <h1 className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-bold mb-4 bg-gradient-to-r from-white via-blue-100 to-blue-400 bg-clip-text text-transparent hero-name leading-[1.1] filter drop-shadow-lg">
-                        Muhammad Abdul Aleem
+                    <h1 className="text-5xl sm:text-7xl lg:text-8xl font-display font-bold text-white leading-[0.95] tracking-tight mb-8 drop-shadow-xl">
+                        Building <br />
+                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-indigo-400 drop-shadow-[0_0_15px_rgba(168,85,247,0.5)]">Digital</span> <br />
+                        Reality.
                     </h1>
-                    <h3 className="text-xl md:text-3xl lg:text-4xl font-semibold text-blue-400 mb-6 hero-title tracking-tight">
-                        Full Stack (MERN) Developer
-                    </h3>
-                    <p className="text-gray-400 text-base md:text-xl max-w-xl mb-10 leading-relaxed hero-tagline font-inter">
-                        Building <span className="text-white font-medium border-b-2 border-blue-500/30">scalable web applications</span> with modern UI & strong backend architecture.
+
+                    <p className="text-xl md:text-2xl text-gray-400 font-medium leading-relaxed max-w-xl mb-12">
+                        I engineer high-performance web applications with a focus on MERN stack architecture and dark-mode minimalist interfaces.
                     </p>
 
-                    {/* Action Buttons */}
-                    <div className="flex flex-col sm:flex-row items-center gap-4 font-montserrat">
-                        <a href="#projects" className="hero-btn w-full sm:w-auto px-8 md:px-10 py-3 md:py-4 rounded-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-500 hover:to-purple-500 font-bold transition-all duration-300 shadow-xl shadow-blue-900/40 uppercase tracking-widest text-[10px] md:text-xs flex items-center justify-center gap-2">
-                            View Projects
+                    <div className="flex flex-col sm:flex-row gap-6 justify-center md:justify-start">
+                        <a href="#projects" className="px-8 py-4 bg-purple-600 text-white font-bold rounded-full shadow-[0_0_20px_rgba(147,51,234,0.5)] hover:bg-purple-500 hover:shadow-[0_0_30px_rgba(168,85,247,0.8)] hover:-translate-y-1 transition-all duration-300 flex items-center justify-center gap-3">
+                            View Work
                         </a>
-
-                        <a href="#contact" className="hero-btn w-full sm:w-auto px-8 md:px-10 py-3 md:py-4 rounded-full bg-white/5 backdrop-blur-md border border-white/10 hover:bg-white/10 transition-all duration-300 font-bold uppercase tracking-widest text-[10px] md:text-xs flex items-center justify-center">
+                        <a href="#contact" className="px-8 py-4 bg-white/5 text-white font-bold rounded-full border border-white/10 hover:border-purple-500/50 hover:bg-purple-900/20 transition-all duration-300 flex items-center justify-center gap-3">
                             Contact Me
-                        </a>
-
-                        <a
-                            href="/Muhammad_Abdul_Aleem_CV.pdf"
-                            download
-                            className="hero-btn w-full sm:w-auto px-8 md:px-10 py-3 md:py-4 rounded-full border border-blue-500/30 text-blue-400 hover:bg-blue-500/10 transition-all duration-300 font-bold uppercase tracking-widest text-[10px] md:text-xs flex items-center justify-center"
-                        >
-                            Download CV
                         </a>
                     </div>
                 </div>
 
+                {/* Right Image */}
+                <div className="flex-1 relative w-full aspect-square max-w-[500px]">
+                    <div className="absolute inset-0 bg-gradient-to-tr from-purple-600/40 to-indigo-600/40 rounded-[40px] rotate-6 blur-2xl"></div>
+                    <div className="relative w-full h-full rounded-[40px] overflow-hidden border-2 border-white/10 bg-[#0a0a0a] rotate-[-3deg] hover:rotate-0 transition-transform duration-500 group shadow-2xl shadow-purple-900/40">
+                        <img
+                            src="/profile.jpg"
+                            alt="Aleem Profile"
+                            className="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-500 grayscale group-hover:grayscale-0"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-[#030014] via-transparent to-transparent opacity-80"></div>
+                    </div>
+                </div>
             </div>
         </section>
     );

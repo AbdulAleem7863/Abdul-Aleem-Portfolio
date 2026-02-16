@@ -1,7 +1,7 @@
-import { useEffect, useRef, useState } from "react";
+import { useRef, useEffect, useState } from "react";
+import { animateStaggeredFadeUp } from "../animations/gsapAnimations";
+import { FiMail, FiPhone, FiSend, FiCheckCircle } from "react-icons/fi";
 import emailjs from "@emailjs/browser";
-import { animateOnScroll, animateTextReveal } from "../animations/gsapAnimations";
-import { FiGithub, FiLinkedin, FiMail, FiSend, FiPhone, FiCheckCircle } from "react-icons/fi";
 
 const Contact = () => {
     const sectionRef = useRef(null);
@@ -9,19 +9,17 @@ const Contact = () => {
     const [status, setStatus] = useState("");
 
     useEffect(() => {
-        animateOnScroll(sectionRef);
-        animateTextReveal(sectionRef);
+        animateStaggeredFadeUp(sectionRef);
     }, []);
 
     const sendEmail = (e) => {
         e.preventDefault();
         setStatus("sending");
 
-        // IMPORTANT: Replace these with your own EmailJS IDs from dashboard
-        // Service ID, Template ID, and Public Key (User ID)
-        const SERVICE_ID = "service_fcu4fyl"; // Placeholder - User needs to replace
-        const TEMPLATE_ID = "template_3jnwzak"; // Placeholder - User needs to replace
-        const PUBLIC_KEY = "VHfSK5JDvYkaRFx6z"; // Placeholder - User needs to replace
+        // EmailJS Configuration
+        const SERVICE_ID = "service_fcu4fyl";
+        const TEMPLATE_ID = "template_3jnwzak";
+        const PUBLIC_KEY = "VHfSK5JDvYkaRFx6z";
 
         emailjs.sendForm(
             SERVICE_ID,
@@ -30,130 +28,105 @@ const Contact = () => {
             PUBLIC_KEY
         )
             .then((result) => {
-                console.log(result.text);
                 setStatus("success");
                 e.target.reset();
+                setTimeout(() => setStatus(""), 5000);
             }, (error) => {
-                console.log(error.text);
+                console.error("EmailJS Error:", error);
                 setStatus("error");
             });
     };
 
     return (
-        <section id="contact" className="py-16 bg-[#050505] text-white px-6 relative overflow-hidden">
+        <section id="contact" ref={sectionRef} className="py-24 bg-[#030014] relative overflow-hidden text-white">
 
-            {/* 3D Light Orb */}
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-blue-600/5 rounded-full blur-[150px] pointer-events-none animate-pulse"></div>
+            {/* Background Gradient */}
+            <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-purple-900/10 rounded-full blur-[120px] pointer-events-none"></div>
 
-            <div ref={sectionRef} className="container mx-auto relative z-10">
-                <div className="flex flex-col lg:flex-row gap-16">
+            <div className="container mx-auto px-6 max-w-7xl relative z-10">
 
-                    {/* Left Side: Info & Socials */}
-                    <div className="w-full lg:w-1/2">
-                        <h2 className="text-blue-500 font-mono text-lg mb-4 tracking-wider uppercase">Get In Touch</h2>
-                        <h3 className="text-4xl md:text-6xl font-bold font-poppins mb-8 leading-tight">
-                            Let's Build Something <br />
-                            <span className="bg-gradient-to-r from-blue-400 via-indigo-400 to-purple-400 bg-clip-text text-transparent">Great Together</span>
-                        </h3>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-16 lg:gap-32 items-center">
 
-                        <p className="text-gray-400 text-xl mb-12 max-w-md leading-relaxed font-inter">
-                            I'm currently looking for new opportunities. Whether you have a question or just want to say hi, I'll try my best to get back to you!
+                    {/* Left: Contact Info */}
+                    <div>
+                        <h2 className="text-4xl md:text-6xl font-display font-bold text-white leading-tight mb-8 drop-shadow-lg">
+                            Let's Start <br className="hidden md:block" />
+                            Something <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-indigo-400 drop-shadow-[0_0_15px_rgba(168,85,247,0.5)]">Legendary</span>.
+                        </h2>
+
+                        <p className="text-lg text-gray-400 max-w-md mb-12">
+                            Have a project in mind, a question, or just want to chat?
+                            I'm available for freelance work and full-time opportunities.
                         </p>
 
-                        <div className="space-y-8">
-                            {/* Email Link */}
-                            <a href="mailto:aleemnaqsh07@gmail.com" className="flex items-center gap-6 group">
-                                <div className="w-14 h-14 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center group-hover:border-blue-500 transition-all duration-500 group-hover:rotate-6">
-                                    <FiMail className="text-2xl text-blue-400" />
+                        <div className="space-y-6 text-gray-300 font-medium">
+                            <a href="mailto:aleemnaqsh07@gmail.com" className="flex items-center gap-4 group p-4 bg-white/[0.03] rounded-2xl border border-white/5 hover:border-purple-500/50 hover:bg-purple-900/20 transition-all hover:shadow-[0_0_20px_rgba(147,51,234,0.3)]">
+                                <div className="w-12 h-12 bg-white/5 rounded-xl flex items-center justify-center text-purple-400 group-hover:bg-purple-600 group-hover:text-white transition-all shadow-inner border border-white/5">
+                                    <FiMail className="text-xl" />
                                 </div>
-                                <div>
-                                    <div className="text-sm font-bold text-gray-500 uppercase tracking-widest">Email Me</div>
-                                    <div className="text-xl font-semibold group-hover:text-blue-400 transition-colors">aleemnaqsh07@gmail.com</div>
-                                </div>
+                                <span className="text-lg group-hover:text-white transition-colors">aleemnaqsh07@gmail.com</span>
                             </a>
 
-                            {/* Phone Link */}
-                            <a href="tel:03365233067" className="flex items-center gap-6 group text-left">
-                                <div className="w-14 h-14 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center group-hover:border-purple-500 transition-all duration-500 group-hover:-rotate-6">
-                                    <FiPhone className="text-2xl text-purple-400" />
+                            <a href="tel:03365233067" className="flex items-center gap-4 group p-4 bg-white/[0.03] rounded-2xl border border-white/5 hover:border-purple-500/50 hover:bg-purple-900/20 transition-all hover:shadow-[0_0_20px_rgba(147,51,234,0.3)]">
+                                <div className="w-12 h-12 bg-white/5 rounded-xl flex items-center justify-center text-purple-400 group-hover:bg-purple-600 group-hover:text-white transition-all shadow-inner border border-white/5">
+                                    <FiPhone className="text-xl" />
                                 </div>
-                                <div>
-                                    <div className="text-sm font-bold text-gray-500 uppercase tracking-widest">Call Me</div>
-                                    <div className="text-xl font-semibold group-hover:text-purple-400 transition-colors">0336 5233067</div>
-                                </div>
+                                <span className="text-lg group-hover:text-white transition-colors">0336 5233067</span>
                             </a>
                         </div>
                     </div>
 
-                    {/* Right Side: Form with EmailJS Integration */}
-                    <div className="w-full lg:w-1/2">
-                        <form
-                            ref={formRef}
-                            onSubmit={sendEmail}
-                            className="space-y-8 p-10 rounded-3xl bg-white/5 border border-white/10 backdrop-blur-xl shadow-2xl relative overflow-hidden group"
-                        >
-                            {/* Inner Radiant Light */}
-                            <div className="absolute -top-24 -right-24 w-64 h-64 bg-blue-500/10 rounded-full blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
+                    {/* Right: Modern Form */}
+                    <form ref={formRef} onSubmit={sendEmail} className="p-8 md:p-12 bg-white/[0.02] backdrop-blur-md rounded-3xl border border-white/10 shadow-2xl hover:border-purple-500/30 transition-all relative overflow-hidden group">
 
-                            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                                <div className="space-y-3">
-                                    <label className="text-xs font-black text-gray-500 uppercase tracking-widest ml-1">Your Name</label>
-                                    <input
-                                        type="text"
-                                        name="name"
-                                        required
-                                        placeholder="John Doe"
-                                        className="w-full h-14 px-6 rounded-2xl bg-black/40 border border-white/10 focus:border-blue-500 focus:ring-4 focus:ring-blue-500/10 outline-none transition-all placeholder:text-gray-700 text-white font-medium"
-                                    />
-                                </div>
-                                <div className="space-y-3">
-                                    <label className="text-xs font-black text-gray-500 uppercase tracking-widest ml-1">Email Address</label>
-                                    <input
-                                        type="email"
-                                        name="email"
-                                        required
-                                        placeholder="aleem@example.com"
-                                        className="w-full h-14 px-6 rounded-2xl bg-black/40 border border-white/10 focus:border-blue-500 focus:ring-4 focus:ring-blue-500/10 outline-none transition-all placeholder:text-gray-700 text-white font-medium"
-                                    />
-                                </div>
+                        {/* Decorative Circle */}
+                        <div className="absolute top-0 right-0 w-40 h-40 bg-purple-600/10 rounded-bl-[100px] -z-10 blur-xl group-hover:bg-purple-600/20 transition-colors"></div>
+
+                        <div className="space-y-6">
+                            <div>
+                                <label className="block text-sm font-bold text-gray-400 mb-2 uppercase tracking-wide">Name</label>
+                                <input type="text" name="name" required className="w-full px-4 py-3 bg-[#0a0a0a] border border-white/10 text-white rounded-xl focus:outline-none focus:border-purple-500 focus:shadow-[0_0_15px_rgba(168,85,247,0.3)] transition-all placeholder-gray-600" placeholder="John Doe" />
                             </div>
 
-                            <div className="space-y-3">
-                                <label className="text-xs font-black text-gray-500 uppercase tracking-widest ml-1">Your Message</label>
-                                <textarea
-                                    name="message"
-                                    required
-                                    rows="5"
-                                    placeholder="Tell me about your project..."
-                                    className="w-full p-6 rounded-2xl bg-black/40 border border-white/10 focus:border-blue-500 focus:ring-4 focus:ring-blue-500/10 outline-none transition-all placeholder:text-gray-700 text-white font-medium resize-none"
-                                ></textarea>
+                            <div>
+                                <label className="block text-sm font-bold text-gray-400 mb-2 uppercase tracking-wide">Email</label>
+                                <input type="email" name="email" required className="w-full px-4 py-3 bg-[#0a0a0a] border border-white/10 text-white rounded-xl focus:outline-none focus:border-purple-500 focus:shadow-[0_0_15px_rgba(168,85,247,0.3)] transition-all placeholder-gray-600" placeholder="john@example.com" />
+                            </div>
+
+                            <div>
+                                <label className="block text-sm font-bold text-gray-400 mb-2 uppercase tracking-wide">Message</label>
+                                <textarea name="message" required rows="4" className="w-full px-4 py-3 bg-[#0a0a0a] border border-white/10 text-white rounded-xl focus:outline-none focus:border-purple-500 focus:shadow-[0_0_15px_rgba(168,85,247,0.3)] transition-all resize-none placeholder-gray-600" placeholder="Tell me about your project..."></textarea>
                             </div>
 
                             <button
                                 type="submit"
                                 disabled={status === "sending"}
-                                className="w-full py-5 rounded-2xl bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-500 hover:to-purple-500 font-black flex items-center justify-center gap-4 transition-all duration-300 shadow-xl shadow-blue-500/20 group active:scale-95 uppercase tracking-[0.2em] text-sm disabled:opacity-50"
+                                className="w-full py-4 bg-purple-600 text-white font-bold rounded-xl shadow-[0_0_20px_rgba(147,51,234,0.4)] hover:bg-purple-500 hover:shadow-[0_0_40px_rgba(168,85,247,0.6)] hover:-translate-y-1 transition-all duration-300 uppercase tracking-widest text-sm flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
                             >
                                 {status === "sending" ? "Sending..." : "Send Message"}
-                                <FiSend className="text-xl transition-transform group-hover:translate-x-2 group-hover:-translate-y-2" />
+                                {!status && <FiSend />}
                             </button>
 
                             {status === "success" && (
-                                <div className="flex items-center gap-2 text-green-400 font-bold bg-green-400/10 p-4 rounded-xl animate-pulse">
-                                    <FiCheckCircle className="text-xl" />
-                                    Message sent successfully! I'll get back to you soon.
+                                <div className="flex items-center gap-2 text-green-400 font-bold bg-green-400/10 p-3 rounded-lg border border-green-400/20 text-sm">
+                                    <FiCheckCircle /> Message sent successfully!
                                 </div>
                             )}
 
                             {status === "error" && (
-                                <div className="text-red-400 font-bold bg-red-400/10 p-4 rounded-xl">
-                                    Oops! Something went wrong. Please check your console or EmailJS configuration.
+                                <div className="text-red-400 font-bold bg-red-400/10 p-3 rounded-lg border border-red-400/20 text-sm">
+                                    Failed to send message. Please try again.
                                 </div>
                             )}
-                        </form>
-                    </div>
-
+                        </div>
+                    </form>
                 </div>
+
+                {/* Footer */}
+                <div className="mt-24 pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center bg-transparent">
+                    <span className="text-gray-500 font-medium font-display tracking-tight text-lg">© 2026 ALEEM.DEV</span>
+                </div>
+
             </div>
         </section>
     );

@@ -6,7 +6,7 @@ const BackToTop = () => {
 
     useEffect(() => {
         const toggleVisibility = () => {
-            if (window.pageYOffset > 500) {
+            if (window.scrollY > 300) {
                 setIsVisible(true);
             } else {
                 setIsVisible(false);
@@ -20,18 +20,17 @@ const BackToTop = () => {
     const scrollToTop = () => {
         window.scrollTo({
             top: 0,
-            behavior: "smooth",
+            behavior: "smooth"
         });
     };
 
     return (
         <button
             onClick={scrollToTop}
-            className={`fixed bottom-8 right-8 z-50 p-4 rounded-full bg-blue-600 text-white shadow-2xl transition-all duration-300 transform ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10 pointer-events-none"
-                } hover:bg-blue-500 hover:scale-110 active:scale-95 group focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-[#050505]`}
-            aria-label="Scroll to top"
+            className={`fixed bottom-6 right-6 md:bottom-12 md:right-12 z-40 p-4 bg-white text-black hover:bg-[#3B82F6] hover:text-white transition-all duration-300 rounded-full shadow-lg ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10 pointer-events-none"}`}
+            aria-label="Back to Top"
         >
-            <FiArrowUp className="text-xl transition-transform group-hover:-translate-y-1" />
+            <FiArrowUp size={20} />
         </button>
     );
 };

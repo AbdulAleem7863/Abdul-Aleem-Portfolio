@@ -1,25 +1,23 @@
 import Navbar from "../components/Navbar";
 import Hero from "../components/Hero";
 import About from "../components/About";
-import Services from "../components/Services";
 import Skills from "../components/Skills";
 import Projects from "../components/Projects";
+import Services from "../components/Services";
 import Experience from "../components/Experience";
 import Contact from "../components/Contact";
 import BackToTop from "../components/BackToTop";
-import ProfessionalCanvas from "../components/ProfessionalCanvas";
 
 const Home = () => {
     return (
-        <main className="relative">
-            <ProfessionalCanvas />
+        <main className="relative bg-[#050505] min-h-screen font-sans selection:bg-[#3B82F6] selection:text-white">
             <Navbar />
             <Hero />
             <About />
+            <Experience />
             <Services />
             <Skills />
             <Projects />
-            <Experience />
             <Contact />
             <BackToTop />
         </main>

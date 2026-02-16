@@ -1,20 +1,53 @@
-html {
-  scroll-behavior: smooth;
-}
-
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Outfit:wght@100..900&family=Space+Grotesk:wght@300..700&family=Montserrat:wght@100..900&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Urbanist:wght@300;400;500;600;700;800&family=Clash+Display:wght@400;500;600;700&display=swap');
 @import "tailwindcss";
 
 @theme {
-  --font-sans: "Outfit", ui-sans-serif, system-ui, sans-serif;
-  --font-space: "Space Grotesk", sans-serif;
-  --font-outfit: "Outfit", sans-serif;
+  --font-sans: "Urbanist", sans-serif;
+  --font-display: "Clash Display", sans-serif;
+
+  /* Strict Dark/Purple Palette */
+  --color-bg: #030014;
+  --color-card: #0F0728;
+  --color-text: #FFFFFF;
+  --color-accent: #A855F7;
+
+  --animate-fade-in: fadeIn 0.8s ease-out forwards;
+  --animate-glow: glow 3s ease-in-out infinite alternate;
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+
+    to {
+      opacity: 1;
+    }
+  }
+
+  @keyframes glow {
+    from {
+      box-shadow: 0 0 10px #A855F720;
+    }
+
+    to {
+      box-shadow: 0 0 30px #A855F760, 0 0 10px #A855F7;
+    }
+  }
 }
 
 @layer base {
+  html {
+    scroll-behavior: smooth;
+    background-color: var(--color-bg);
+  }
+
   body {
-    @apply font-sans antialiased text-white bg-[#050505];
+    @apply font-sans antialiased text-white overflow-x-hidden;
+    background-color: var(--color-bg);
+  }
+
+  ::selection {
+    @apply bg-purple-600 text-white;
   }
 
   h1,
@@ -23,6 +56,20 @@ html {
   h4,
   h5,
   h6 {
-    @apply font-space;
+    @apply font-display tracking-tight text-white;
+  }
+}
+
+@layer utilities {
+  .glass-card {
+    @apply bg-white/[0.03] backdrop-blur-xl border border-white/[0.05] shadow-xl hover:shadow-purple-500/10 hover:border-purple-500/30 transition-all duration-300;
+  }
+
+  .text-glow {
+    text-shadow: 0 0 20px rgba(168, 85, 247, 0.5);
+  }
+
+  .neon-border {
+    box-shadow: 0 0 10px rgba(168, 85, 247, 0.3), inset 0 0 10px rgba(168, 85, 247, 0.1);
   }
 }

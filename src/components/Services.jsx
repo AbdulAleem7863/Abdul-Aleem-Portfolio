@@ -1,104 +1,62 @@
-import { useEffect, useRef } from "react";
-import { animateStaggeredFadeUp, animateTextReveal } from "../animations/gsapAnimations";
-import {
-    FiLayout, FiCode, FiCloud, FiShoppingCart,
-    FiDatabase, FiShield, FiBarChart, FiTool
-} from "react-icons/fi";
+import { useRef, useEffect } from "react";
+import { animateStaggeredFadeUp } from "../animations/gsapAnimations";
+import { FiLayout, FiCode, FiCloud, FiShoppingCart, FiDatabase, FiShield, FiActivity, FiLayers } from "react-icons/fi";
 
 const services = [
-    {
-        title: "Responsive Web Development",
-        description: "Building ultra-fast, mobile-first websites that look stunning on all devices from 4K monitors to smartphones.",
-        icon: <FiLayout className="text-blue-400" />
-    },
-    {
-        title: "Full Stack Web Applications",
-        description: "End-to-end development of dynamic web apps using the MERN stack with scalable architecture.",
-        icon: <FiCode className="text-purple-400" />
-    },
-    {
-        title: "SaaS Application Development",
-        description: "Designing and engineering complex Software-as-a-Service platforms with multi-tenancy and subscription models.",
-        icon: <FiCloud className="text-cyan-400" />
-    },
-    {
-        title: "E-commerce Solutions",
-        description: "Creating high-converting online stores with secure payment gateways (Stripe/PayPal) and inventory management.",
-        icon: <FiShoppingCart className="text-pink-400" />
-    },
-    {
-        title: "API Development & Integration",
-        description: "Developing robust RESTful APIs and integrating third-party services like Google Maps, Twilio, and Stripe.",
-        icon: <FiDatabase className="text-orange-400" />
-    },
-    {
-        title: "Authentication & Security Systems",
-        description: "Implementing high-level security protocols, JWT authentication, and role-based access control (RBAC).",
-        icon: <FiShield className="text-green-400" />
-    },
-    {
-        title: "Custom Dashboard & Admin Panels",
-        description: "Advanced data visualization and management systems tailored to your business needs.",
-        icon: <FiBarChart className="text-indigo-400" />
-    },
-    {
-        title: "Bug Fixing & Maintenance",
-        description: "Optimizing existing codebases, resolving pesky bugs, and providing long-term maintenance support.",
-        icon: <FiTool className="text-yellow-400" />
-    }
+    { title: "Full Stack Web Apps", desc: "End-to-end applications built with React, Node.js, and MongoDB.", icon: <FiLayers /> },
+    { title: "SaaS Platform Dev", desc: "Scalable multi-tenant architectures with subscription management.", icon: <FiActivity /> },
+    { title: "Responsive Design", desc: "Pixel-perfect layouts optimized for mobile, tablet, and desktop.", icon: <FiLayout /> },
+    { title: "Database Architecture", desc: "Efficient schema design and query optimization for high-scale data.", icon: <FiDatabase /> },
+    { title: "API Development", desc: "Secure, documented, and scalable RESTful API integrations.", icon: <FiCloud /> },
+    { title: "E-Commerce", desc: "Custom online stores with payment gateways and inventory management.", icon: <FiShoppingCart /> },
+    { title: "Security Protocols", desc: "Implementation of JWT auth, data encryption, and role-based access.", icon: <FiShield /> },
+    { title: "MERN Stack Solutions", desc: "Specialized development using the MongoDB, Express, React, Node stack.", icon: <FiCode /> },
 ];
 
 const Services = () => {
     const sectionRef = useRef(null);
 
     useEffect(() => {
-        animateStaggeredFadeUp(sectionRef, ".service-card");
-        animateTextReveal(sectionRef);
+        animateStaggeredFadeUp(sectionRef);
     }, []);
 
     return (
-        <section id="services" className="py-16 bg-[#050505] text-white px-6 relative overflow-hidden">
+        <section id="services" ref={sectionRef} className="py-12 bg-[#030014] relative text-white">
+            <div className="container mx-auto px-6 max-w-7xl">
 
-            {/* Ambient Lighting */}
-            <div className="absolute top-1/2 left-0 w-80 h-80 bg-blue-600/5 rounded-full blur-[120px] pointer-events-none"></div>
-
-            <div ref={sectionRef} className="container mx-auto relative z-10">
-
-                {/* Section Title */}
-                <div className="text-center mb-20">
-                    <h2 className="text-blue-500 font-bold text-xl md:text-3xl mb-4 tracking-[0.2em] uppercase">What I Offer</h2>
-                    <h3 className="text-4xl md:text-6xl font-bold font-poppins">Premium <span className="text-blue-400">Services</span></h3>
+                {/* Header */}
+                <div className="flex flex-col md:flex-row justify-between items-end mb-12 gap-6 border-b border-white/5 pb-8">
+                    <div>
+                        <h2 className="text-sm font-bold text-purple-400 uppercase tracking-[0.2em] mb-2 drop-shadow-md">Technical Capabilities</h2>
+                        <h3 className="text-3xl md:text-5xl font-display font-bold text-white leading-tight">
+                            Digital <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-indigo-400">Services</span>
+                        </h3>
+                    </div>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                {/* Compact Grid */}
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                     {services.map((service, index) => (
-                        <div
-                            key={index}
-                            className="service-card group relative p-8 rounded-3xl bg-white/5 border border-white/10 backdrop-blur-md hover:bg-white/10 hover:border-blue-500/50 transition-all duration-500 cursor-default shadow-xl overflow-hidden"
-                        >
-                            {/* Decorative Icon Glow */}
-                            <div className="absolute -top-10 -right-10 w-32 h-32 bg-blue-600/10 rounded-full blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
+                        <div key={index} className="group relative p-6 bg-white/[0.02] border border-white/5 hover:bg-white/[0.04] hover:border-purple-500/30 transition-all duration-300 rounded-xl overflow-hidden min-h-[180px] flex flex-col justify-between">
 
-                            <div className="relative z-10 text-center flex flex-col items-center">
-                                <div className="text-5xl mb-6 p-4 rounded-2xl bg-black/40 border border-white/5 shadow-inner transition-transform duration-500 group-hover:scale-110 group-hover:rotate-6">
-                                    {service.icon}
-                                </div>
+                            {/* Hover Corner Accent */}
+                            <div className="absolute top-0 right-0 w-16 h-16 bg-purple-500/10 rounded-bl-[50px] -translate-y-8 translate-x-8 group-hover:translate-y-0 group-hover:translate-x-0 transition-transform duration-500"></div>
 
-                                <h4 className="text-xl font-bold font-poppins mb-4 group-hover:text-blue-400 transition-colors duration-300">
-                                    {service.title}
-                                </h4>
-
-                                <p className="text-gray-400 text-sm leading-relaxed font-inter">
-                                    {service.description}
-                                </p>
+                            <div className="w-10 h-10 bg-white/5 rounded-lg flex items-center justify-center text-purple-400 text-lg group-hover:bg-purple-500 group-hover:text-white transition-all duration-300 border border-white/5 group-hover:shadow-[0_0_15px_rgba(168,85,247,0.4)] mb-4">
+                                {service.icon}
                             </div>
 
-                            {/* Hover Bottom Border Gradient */}
-                            <div className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-blue-600 to-purple-600 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left"></div>
+                            <div>
+                                <h4 className="text-lg font-display font-bold text-white mb-2 group-hover:text-purple-300 transition-colors leading-tight">
+                                    {service.title}
+                                </h4>
+                                <p className="text-gray-400 text-xs leading-relaxed group-hover:text-gray-300 transition-colors">
+                                    {service.desc}
+                                </p>
+                            </div>
                         </div>
                     ))}
                 </div>
-
             </div>
         </section>
     );

@@ -1,124 +1,71 @@
 import { useState, useEffect } from "react";
-import { HiMenuAlt3, HiX } from "react-icons/hi";
-
-const navLinks = [
-    { name: "Home", href: "#home" },
-    { name: "About", href: "#about" },
-    { name: "Services", href: "#services" },
-    { name: "Skills", href: "#skills" },
-    { name: "Projects", href: "#projects" },
-    { name: "Experience", href: "#experience" },
-    { name: "Contact", href: "#contact" },
-];
+import { FiMenu, FiX } from "react-icons/fi";
 
 const Navbar = () => {
-    const [isScrolled, setIsScrolled] = useState(false);
-    const [isMenuOpen, setIsMenuOpen] = useState(false);
+    const [scrolled, setScrolled] = useState(false);
+    const [isOpen, setIsOpen] = useState(false);
 
     useEffect(() => {
-        const handleScroll = () => {
-            setIsScrolled(window.scrollY > 20);
-        };
+        const handleScroll = () => setScrolled(window.scrollY > 30);
         window.addEventListener("scroll", handleScroll);
+        return () => window.removeEventListener("scroll", handleScroll);
+    }, []);
 
-        // Lock body scroll when menu is open
-        if (isMenuOpen) {
-            document.body.style.overflow = "hidden";
-        } else {
-            document.body.style.overflow = "auto";
-        }
-
-        return () => {
-            window.removeEventListener("scroll", handleScroll);
-            document.body.style.overflow = "auto";
-        };
-    }, [isMenuOpen]);
+    const navLinks = [
+        { name: "Services", href: "#services" },
+        { name: "Projects", href: "#projects" },
+        { name: "Skills", href: "#skills" },
+        { name: "Contact", href: "#contact" },
+    ];
 
     return (
-        <>
-            <nav
-                className={`fixed top-0 left-0 w-full z-[100] transition-all duration-500 ${isScrolled || isMenuOpen
-                    ? "bg-[#050505]/90 border-b border-white/5 py-4"
-                    : "bg-transparent py-6"
-                    } backdrop-blur-xl`}
-            >
-                <div className="container mx-auto px-6 flex justify-between items-center">
-                    {/* Logo */}
-                    <a href="#home" className="group flex items-center gap-2">
-                        <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-blue-600 to-purple-600 flex items-center justify-center font-bold text-xl transition-transform group-hover:scale-110 shadow-lg shadow-blue-500/20">
-                            MA
-                        </div>
-                        <span className="text-xl font-bold font-poppins tracking-tighter text-white">
-                            Aleem<span className="text-blue-500">.</span>
-                        </span>
-                    </a>
+        <nav className={`fixed top-4 left-1/2 -translate-x-1/2 w-[90%] md:w-[70%] z-[999] transition-all duration-300 rounded-full px-6 py-3 flex justify-between items-center ${scrolled ? "bg-[#030014]/60 backdrop-blur-xl border border-white/10 shadow-[0_0_20px_rgba(168,85,247,0.15)]" : "bg-transparent border-transparent py-4 text-white"}`}>
 
-                    {/* Desktop Nav */}
-                    <div className="hidden md:flex items-center gap-8">
-                        {navLinks.map((link) => (
-                            <a
-                                key={link.name}
-                                href={link.href}
-                                className="text-xs font-bold uppercase tracking-widest text-gray-400 hover:text-white transition-all duration-300 relative group"
-                            >
-                                {link.name}
-                                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-500 transition-all duration-300 group-hover:w-full"></span>
-                            </a>
-                        ))}
-                        <a
-                            href="#contact"
-                            className="px-6 py-2 rounded-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-500 hover:to-purple-500 transition-all duration-300 text-[10px] font-black uppercase tracking-widest text-white shadow-lg shadow-blue-500/20"
-                        >
-                            Hire Me
-                        </a>
-                    </div>
+            {/* Logo */}
+            <a href="#home" className="text-xl font-bold font-display tracking-tight text-white group drop-shadow-[0_0_10px_rgba(168,85,247,0.5)]">
+                ALEEM<span className="text-purple-400 group-hover:text-white transition-colors">.DEV</span>
+            </a>
 
-                    {/* Mobile Menu Button */}
-                    <button
-                        className="md:hidden text-3xl text-white focus:outline-none z-[110]"
-                        onClick={() => setIsMenuOpen(!isMenuOpen)}
-                        aria-label="Toggle Menu"
-                    >
-                        {isMenuOpen ? <HiX className="text-blue-400" /> : <HiMenuAlt3 />}
-                    </button>
-                </div>
-            </nav>
-
-            {/* Full-Screen Mobile Menu Overlay */}
-            <div
-                className={`fixed inset-0 w-full h-screen bg-[#050505] z-[90] flex flex-col items-center justify-center transition-all duration-500 md:hidden ${isMenuOpen
-                    ? "opacity-100 pointer-events-auto translate-y-0"
-                    : "opacity-0 pointer-events-none -translate-y-full"
-                    }`}
-            >
-                <div className="flex flex-col items-center gap-8">
-                    {navLinks.map((link, idx) => (
-                        <a
-                            key={link.name}
-                            href={link.href}
-                            onClick={() => setIsMenuOpen(false)}
-                            className={`text-4xl font-black font-poppins text-white hover:text-blue-500 transition-all duration-300 uppercase tracking-tighter ${isMenuOpen ? "translate-y-0 opacity-100" : "translate-y-10 opacity-0"
-                                }`}
-                            style={{ transitionDelay: `${idx * 50}ms` }}
-                        >
-                            {link.name}
-                        </a>
-                    ))}
+            {/* Desktop Nav */}
+            <div className="hidden md:flex items-center gap-8">
+                {navLinks.map((link) => (
                     <a
-                        href="#contact"
-                        onClick={() => setIsMenuOpen(false)}
-                        className={`mt-6 px-12 py-5 rounded-full bg-gradient-to-r from-blue-600 to-purple-600 text-white font-black uppercase tracking-[0.2em] text-sm shadow-2xl transition-all duration-500 ${isMenuOpen ? "scale-100 opacity-100" : "scale-50 opacity-0"
-                            }`}
-                        style={{ transitionDelay: "300ms" }}
+                        key={link.name}
+                        href={link.href}
+                        className="text-sm font-medium text-gray-300 hover:text-purple-400 transition-colors font-sans uppercase tracking-widest hover:drop-shadow-[0_0_5px_rgba(168,85,247,0.8)]"
                     >
-                        Hire Me
+                        {link.name}
                     </a>
-                </div>
-
-                {/* Decorative background element for mobile menu */}
-                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] bg-blue-600/10 rounded-full blur-[100px] -z-10"></div>
+                ))}
+                <a
+                    href="#contact"
+                    className="px-6 py-2.5 bg-purple-600/20 text-purple-300 text-sm font-bold rounded-full border border-purple-500/50 hover:bg-purple-600 hover:text-white hover:shadow-[0_0_20px_rgba(168,85,247,0.5)] transition-all duration-300 backdrop-blur-md"
+                >
+                    Let's Talk
+                </a>
             </div>
-        </>
+
+            {/* Mobile Toggle */}
+            <button onClick={() => setIsOpen(!isOpen)} className="md:hidden text-white text-2xl">
+                {isOpen ? <FiX /> : <FiMenu />}
+            </button>
+
+            {/* Mobile Menu */}
+            <div className={`fixed inset-0 top-0 left-0 w-full h-screen bg-[#030014] z-[-1] flex flex-col items-center justify-center gap-8 transition-transform duration-500 ${isOpen ? "translate-y-0" : "-translate-y-full"}`}>
+                <div className="absolute inset-0 bg-gradient-to-br from-purple-900/20 via-transparent to-transparent pointer-events-none"></div>
+                {navLinks.map((link, idx) => (
+                    <a
+                        key={link.name}
+                        href={link.href}
+                        onClick={() => setIsOpen(false)}
+                        className="text-4xl font-bold font-display text-white hover:text-purple-400 transition-colors drop-shadow-[0_0_10px_rgba(255,255,255,0.2)]"
+                        style={{ transitionDelay: `${idx * 100}ms` }}
+                    >
+                        {link.name}
+                    </a>
+                ))}
+            </div>
+        </nav>
     );
 };
 
