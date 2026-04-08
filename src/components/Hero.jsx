@@ -48,9 +48,9 @@ const Hero = () => {
                     <div className="absolute inset-0 bg-gradient-to-tr from-purple-600/40 to-indigo-600/40 rounded-[40px] rotate-6 blur-2xl"></div>
                     <div className="relative w-full h-full rounded-[40px] overflow-hidden border-2 border-white/10 bg-[#0a0a0a] rotate-[-3deg] hover:rotate-0 transition-transform duration-500 group shadow-2xl shadow-purple-900/40">
                         <img
-                            src="/profile.jpg"
+                            src="/aleem1.png"
                             alt="Aleem Profile"
-                            className="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-500 grayscale group-hover:grayscale-0"
+                            className="w-full h-full object-cover opacity-80 object-[50%_20%] group-hover:opacity-100 transition-opacity duration-500 hover:object-[50%_50%] group-hover:grayscale-0"
                         />
                         <div className="absolute inset-0 bg-gradient-to-t from-[#030014] via-transparent to-transparent opacity-80"></div>
                     </div>

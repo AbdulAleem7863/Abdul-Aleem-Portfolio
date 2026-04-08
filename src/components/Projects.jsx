@@ -5,36 +5,54 @@ import barber from "../assets/projects/barber.png";
 import camts from "../assets/projects/camts.png";
 import dialer from "../assets/projects/dialer.png";
 import kiosk from "../assets/projects/kiosk.png";
+import hgw from "../assets/projects/hgw.png";
+import proactive from "../assets/projects/proactive.png";
 
 const projects = [
     {
-        title: "CAMTS Surveyor Management",
-        desc: "Streamlines surveyor tasks with field data collection, assignment tracking, and reporting.",
-        tech: ["React", "Node.js", "Express.js", "MongoDB", "Mongoose", "JWT Auth", "Cloudinary"],
+        title: "CAMTS Management",
+        desc: "Surveyor tasks, field data collection, and assignment tracking.",
+        tech: ["React", "Node.js", "Express.js", "MongoDB", "Mongoose", "Ant Design"],
         image: camts,
         link: "https://camts-fe.vercel.app",
         github: "#"
     },
+     {
+        title: "Proactive-Future",
+        desc: "Travel Management Saas Platform",
+        tech: ["React", "Node.js", "Express", "PostgreSQL", "Prisma", "shadcn/ui "],
+        image: proactive,
+        link: "https://proactive-fe.vercel.app",
+        github: "#"
+    },
     {
-        title: "VIP Barber Shop Admin",
-        desc: "Administrative panel for barber marketplace handling bookings, profiles, and financial oversight.",
-        tech: ["React.js", "Node.js", "Express.js", "MongoDB", "Mongoose", "JWT Auth"],
+        title: "CallScout Dialer",
+        desc: "Automated dialing and specialized CRM dashboards.",
+        tech: ["React", "Node.js", "Express", "PostgreSQL", "Prisma", "shadcn/ui "],
+        image: dialer,
+        link: "https://multi-dialer-fe.vercel.app",
+        github: "#"
+    },
+     {
+        title: "VIB Barber Admin",
+        desc: "Barber marketplace bookings and financial oversight.",
+        tech: ["React", "Node.js", "Express", "MongoDB", "Mongoose", "Ant Design"],
         image: barber,
         link: "https://vib-barber-fe-two.vercel.app",
         github: "#"
     },
     {
-        title: "CallScout Multi-Dialer",
-        desc: "Lead management and automated dialing platform with specialized CRM dashboards.",
-        tech: ["React.js", "Node.js", "Express.js", "PostgreSQL", "Prisma", "Twilio", "JWT Auth", "Cloudinary"],
-        image: dialer,
-        link: "https://multi-dialer-fe.vercel.app",
+        title: "How Good Was",
+        desc: "Players Skill Competition , Podcast , Articles Saas Platform",
+        tech: ["Next.js", "Herou Ui", "Typescript"],
+        image: hgw,
+        link: "https://hgw-fe.vercel.app",
         github: "#"
     },
     {
         title: "KIOSK AI Fashion",
-        desc: "AI-powered apparel design platform for instant artwork generation and customization.",
-        tech: ["React", "Node.js", "Express.js", "MongoDB", "Mongoose", "JWT Auth", "Cloudinary"],
+        desc: "AI-powered apparel design and customization.",
+        tech: ["React", "Node.js", "Express.js", "MongoDB", "Mongoose", "Cloudinary"],
         image: kiosk,
         link: "https://kiosk-ai.vercel.app",
         github: "#"
@@ -49,60 +67,61 @@ const Projects = () => {
     }, []);
 
     return (
-        <section id="projects" ref={sectionRef} className="py-10 bg-[#030014] relative overflow-hidden">
-            <div className="container mx-auto px-6 max-w-7xl">
+        <section id="projects" ref={sectionRef} className="py-16 bg-[#030014] relative overflow-hidden">
 
-                {/* Section Header */}
-                <div className="mb-12 border-b border-white/5 pb-8 flex flex-col md:flex-row justify-between items-end gap-4">
-                    <div>
-                        <h4 className="text-purple-400 font-bold uppercase tracking-[0.2em] text-sm mb-2 drop-shadow-md">Selected Work</h4>
-                        <h2 className="text-3xl md:text-5xl font-display font-bold text-white leading-tight">
-                            Feature <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-indigo-400">Projects</span>
-                        </h2>
-                    </div>
+            {/* Subtle Gradient Glow */}
+            <div className="absolute top-0 left-1/4 w-[400px] h-[400px] bg-purple-600/5 rounded-full blur-[100px] pointer-events-none"></div>
+
+            <div className="container mx-auto px-6 max-w-7xl relative z-10">
+
+                {/* Compact Header */}
+                <div className="mb-12">
+                    <h2 className="text-3xl md:text-4xl font-display font-bold text-white leading-tight">
+                        Featured <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-indigo-400">Projects</span>
+                    </h2>
+                    <div className="h-1 w-12 bg-purple-500/50 mt-4 rounded-full"></div>
                 </div>
 
-                {/* Vertical Showcase Layout */}
-                <div className="space-y-32">
+                {/* Triple Column Compact Grid */}
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     {projects.map((project, idx) => (
-                        <div key={idx} className={`flex flex-col lg:flex-row items-center gap-12 group ${idx % 2 === 1 ? 'lg:flex-row-reverse' : ''}`}>
+                        <div key={idx} className="group bg-white/[0.03] border border-white/10 rounded-2xl overflow-hidden hover:border-purple-500/40 transition-all duration-300 flex flex-col hover:shadow-2xl hover:shadow-purple-900/10">
 
-                            {/* Image - 60% Width */}
-                            <div className="w-full lg:w-7/12 relative rounded-3xl overflow-hidden border border-white/10 shadow-2xl hover:shadow-[0_0_40px_rgba(147,51,234,0.15)] transition-all duration-500 bg-[#0a0a0a]">
-                                {/* No fixed aspect ratio to allow full height image */}
-                                <div className="relative w-full h-auto">
-                                    <div className="absolute inset-0 bg-purple-900/10 group-hover:bg-transparent transition-colors duration-500 z-10 pointer-events-none"></div>
-                                    <img
-                                        src={project.image}
-                                        alt={project.title}
-                                        className="w-full h-auto object-contain transform scale-100 group-hover:scale-105 transition-transform duration-700"
-                                    />
+                            {/* Smaller Image Container */}
+                            <div className="relative aspect-video overflow-hidden">
+                                <img
+                                    src={project.image}
+                                    alt={project.title}
+                                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                                />
+                                <div className="absolute inset-0 bg-gradient-to-t from-[#030014]/80 to-transparent"></div>
 
-                                    {/* Floating Link Buttons */}
-                                    <div className="absolute bottom-6 left-6 z-20 flex gap-4 opacity-0 group-hover:opacity-100 translate-y-4 group-hover:translate-y-0 transition-all duration-500">
-                                        <a href={project.link} target="_blank" className="flex items-center gap-2 px-5 py-2 bg-white text-black rounded-full text-sm font-bold hover:bg-purple-400 hover:text-white transition-colors">
-                                            <FiExternalLink /> Live Demo
+                                <div className="absolute bottom-3 right-3 flex gap-2">
+                                    <a href={project.link} target="_blank" rel="noreferrer" className="p-2 bg-purple-600/90 text-white rounded-lg hover:bg-purple-500 transition-colors shadow-lg">
+                                        <FiExternalLink size={16} />
+                                    </a>
+                                    {project.github !== "#" && (
+                                        <a href={project.github} target="_blank" rel="noreferrer" className="p-2 bg-white/10 backdrop-blur-md text-white rounded-lg hover:bg-white/20 transition-colors border border-white/10">
+                                            <FiGithub size={16} />
                                         </a>
-                                    </div>
+                                    )}
                                 </div>
                             </div>
 
-                            {/* Text Content - 40% Width */}
-                            <div className="w-full lg:w-5/12 space-y-6">
-                                <span className="text-6xl font-display font-bold text-white/5 opacity-50 block -mb-4">0{idx + 1}</span>
+                            {/* Tightened Content */}
+                            <div className="p-5 flex flex-col grow">
+                                <h3 className="text-lg font-bold text-white mb-2 group-hover:text-purple-400 transition-colors">
+                                    {project.title}
+                                </h3>
 
-                                <div>
-                                    <h3 className="text-3xl font-display font-bold text-white mb-4 group-hover:text-purple-300 transition-colors">
-                                        {project.title}
-                                    </h3>
-                                    <p className="text-gray-400 text-lg leading-relaxed font-light">
-                                        {project.desc}
-                                    </p>
-                                </div>
+                                <p className="text-gray-400 text-xs leading-relaxed mb-4 line-clamp-2">
+                                    {project.desc}
+                                </p>
 
-                                <div className="flex flex-wrap gap-2 pt-4">
+                                {/* Mini Tech Tags */}
+                                <div className="mt-auto flex flex-wrap gap-1.5 pt-2">
                                     {project.tech.map((t, i) => (
-                                        <span key={i} className="px-4 py-1.5 bg-white/5 text-gray-300 text-sm font-mono rounded-full border border-white/5">
+                                        <span key={i} className="px-2 py-0.5 bg-white/5 border border-white/5 rounded text-[10px] font-medium text-gray-400 group-hover:text-gray-200 transition-colors">
                                             {t}
                                         </span>
                                     ))}
